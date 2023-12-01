@@ -1,7 +1,6 @@
 <?php
 // Edit Request
 add_action('wp_ajax_laim_admin_actions', 'laim_admin_actions_callabck');
-add_action('wp_ajax_nopriv_laim_admin_actions', 'laim_admin_actions_callabck');
 
 function laim_admin_actions_callabck() {
 	$response = [];
@@ -21,7 +20,6 @@ function laim_admin_actions_callabck() {
 
 // Popup Request
 add_action('wp_ajax_laim_admin_popup_actions', 'laim_admin_popup_actions_callabck');
-add_action('wp_ajax_nopriv_laim_admin_popup_actions', 'laim_admin_popup_actions_callabck');
 
 function laim_admin_popup_actions_callabck() {
 	$response = [];
@@ -55,6 +53,42 @@ function laim_admin_popup_actions_callabck() {
 		'item_category' => 'Cannulation gg',
 		'item_quantity' => '100 Pcs gg'
 	];
+
+	echo wp_send_json( $query_response );
+	wp_die();
+}
+
+// Popup Request
+add_action('wp_ajax_laim_frontend_ajax_datas', 'laim_frontend_ajax_datas_callabck');
+
+function laim_frontend_ajax_datas_callabck() {
+	$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+	$item_name = isset($_POST['item_name']) ? sanitize_text_field($_POST['item_name']) : '';
+	$usage_items = isset($_POST['usage_items']) ? sanitize_text_field($_POST['usage_items']) : '';
+	$purpose = isset($_POST['purpose']) ? sanitize_text_field($_POST['purpose']) : '';
+	$comment = isset($_POST['comment']) ? sanitize_text_field($_POST['comment']) : '';
+	// Verify the nonce
+	// if ( ! wp_verify_nonce( $nonce, 'laim-stock-usage-form-nonce' ) ) {
+	// 	die('Not Authorized!');
+	// }	
+	global $wpdb;
+	$query_response = $wpdb->insert(
+		$wpdb->base_prefix.'usage_tbl',
+		array(
+			'item_name' => $item_name,
+			'purpose' => $purpose,
+			'item_used' => $usage_items,
+			'comments' => $comment,
+			'created_at' => current_time('mysql', 1),
+		),
+		array(
+			'%s',
+			'%s',
+			'%s',
+			'%s',
+			'%s',
+		)
+	);
 
 	echo wp_send_json( $query_response );
 	wp_die();

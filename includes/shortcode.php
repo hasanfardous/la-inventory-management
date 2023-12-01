@@ -12,7 +12,6 @@ function laim_content_shortcode() {
 	<div class="laim-stock-usage-form-wrapper">
 		<div class="laim-stock-usage-confirmation-message"></div>
 		<form method="post" class="laim-stock-usage-form">
-			<?php wp_nonce_field( 'laim-stock-usage-form-nonce' );?>
             <div class="laim-stock-usage-form-inner">
                 <div class="laim-single-entry">
                     <label for="laim-select-item-name">Select Name</label>

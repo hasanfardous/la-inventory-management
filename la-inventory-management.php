@@ -50,7 +50,8 @@ function laim_enqueue_scripts() {
 		'laim-script-js', 
 		'laim_ajax_datas', 
 		array(
-			'ajax_url' => admin_url( 'admin-ajax.php' )
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'	=> wp_create_nonce('laim-stock-usage-form-nonce')
 		) 
 	);
 }
