@@ -1,0 +1,31 @@
+li#toplevel_page_view-stock .dashicons-before>img {
+    width: 24px;
+    margin: -3px;
+}
+
+.laim-admin-wrapper table,
+.laim-admin-wrapper table th,
+.laim-admin-wrapper table tr,
+.laim-admin-wrapper table td {
+    border: 1px solid #ddd;
+}
+
+.laim-admin-wrapper table th {
+    padding-left: 12px;
+    background: #d0d0d0;
+}
+
+.laim-admin-wrapper table tr td:first-child,
+.laim-admin-wrapper table tr th:first-child {
+    max-width: 40px;
+}
+
+#tabs-1 h2 {
+    text-align: center;
+}
+
+canvas#inventory-chart {
+    width: 400px !important;
+    height: auto !important;
+    margin: 0 auto;
+}

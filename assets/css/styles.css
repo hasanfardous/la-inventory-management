@@ -1,0 +1,30 @@
+/* Form Styles */
+.laim-stock-usage-form-wrapper div.laim-stock-usage-form-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+}
+
+.laim-single-entry label {
+  font-weight: bold;
+  line-height: 44px;
+}
+
+.laim-single-entry select,
+.laim-single-entry input,
+.laim-single-entry textarea {
+  width: 100%;
+}
+
+.laim-single-entry select:focus,
+.laim-single-entry input:focus,
+.laim-single-entry textarea:focus {
+  outline: none;
+  border: 1px solid #333;
+}
+
+.laim-single-entry select,
+.laim-single-entry textarea {
+  height: 50px;
+}
