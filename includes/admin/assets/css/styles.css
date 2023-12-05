@@ -25,7 +25,22 @@ li#toplevel_page_view-stock .dashicons-before>img {
 }
 
 canvas#inventory-chart {
-    width: 400px !important;
-    height: auto !important;
+    /* width: 400px !important; */
+    height: auto;
     margin: 0 auto;
+}
+
+.laim-admin-wrapper h1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.laim-admin-wrapper span.laim-add-inventory-item {
+    font-size: 14px;
+    background: #317fff;
+    padding: 10px 20px;
+    color: #fff;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border-radius: 4px;
 }

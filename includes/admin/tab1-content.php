@@ -13,7 +13,7 @@
         $stock_count_json = json_encode($stock_count);
     ?>
 
-    <canvas id="inventory-chart" width="400" height="200"></canvas>
+    <canvas id="inventory-chart" width="600" height="400"></canvas>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -42,13 +42,16 @@
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'top',
+                            position: 'right',
                         },
                         title: {
                             display: true,
                             text: 'Stock Chart'
                         }
-                    }
+                    },
+                    // onAnimationComplete: true,
+                    // tooltipevents: true
+                    showTooltips: true
                 },	
             });
         });

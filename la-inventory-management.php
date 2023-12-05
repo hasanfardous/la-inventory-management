@@ -68,7 +68,9 @@ function laim_admin_enqueue_scripts() {
 		'laim-custom-script', 
 		'laim_admin_datas', 
 		array(
-			'ajax_url' => admin_url( 'admin-ajax.php' )
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'	=> wp_create_nonce('laim-admin-nonce'),
+			'la_site_url' => get_site_url()
 		) 
 	);
 }

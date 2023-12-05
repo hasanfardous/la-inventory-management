@@ -28,3 +28,19 @@
 .laim-single-entry textarea {
   height: 50px;
 }
+
+.laim-stock-usage-confirmation-message p {
+  margin: 0;
+  line-height: 34px;
+  background: #ff7373;
+  border: 2px solid #cd2121;
+  padding: 8px 14px;
+  border-radius: 4px;
+  margin-top: 24px;
+  opacity: 0;
+}
+
+.laim-stock-usage-confirmation-message p.success {
+  background: #81df77;
+  border: 2px solid #509049;
+}

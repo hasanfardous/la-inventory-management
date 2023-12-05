@@ -1,6 +1,6 @@
 
-<div id="tabs-2">
-    <h2 class="title"><?php _e('Our Stock', 'la-inventory-management')?></h2>
+<div id="tabs-3">
+    <h2 class="title"><?php _e('Inventory', 'la-inventory-management')?></h2>
 
     <table class="form-table">
         <tbody>
@@ -12,35 +12,42 @@
                     <?php _e('Item Name', 'la-inventory-management')?>
                 </th>
                 <th>
-                    <?php _e('Category', 'la-inventory-management')?>
+                    <?php _e('Cat Name', 'la-inventory-management')?>
                 </th>
                 <th>
-                    <?php _e('Stock (Pcs)', 'la-inventory-management')?>
+                    <?php _e('Item Added', 'la-inventory-management')?>
                 </th>
                 <th>
-                    <?php _e('Action', 'la-inventory-management')?>
+                    <?php _e('Date', 'la-inventory-management')?>
                 </th>
             </tr>
             <?php
-            $all_stocks = $wpdb->get_results( "SELECT * FROM {$wpdb->base_prefix}stock_tbl", ARRAY_A );
-            // item_name
-            // cat_name
-            // stock_count
-            // updated_at
-            $counter = 1;
-            foreach ( $all_stocks as $item ) {
-                ?>
-                <tr>
-                    <td><?php echo $counter++?></td>
-                    <td><?php echo $item['item_name']?></td>
-                    <td><?php echo $item['cat_name']?></td>
-                    <td><?php echo $item['stock_count']?></td>
-                    <td>
-                        <a href="#" class="lim-trigger-popup-box" data-title="<?php echo $item['item_name']?>" data-edit-id="<?php echo $item['id']?>">Edit</a>
-                        <a href="#Tlim-delete-popup-box" name="Delete - Butterfly Needle" class="thickbox">Delete</a>
-                    </td>
-                </tr>
-                <?php
+            $all_inventories = $wpdb->get_results( "SELECT * FROM {$wpdb->base_prefix}inventory_tbl ORDER BY id DESC", ARRAY_A );
+            if ( count( $all_inventories ) > 0 ) {
+                $counter = 1;
+                foreach ( $all_inventories as $item ) {
+                    $item_id = $item['id'];
+                    $stock_tbl_id = $item['stock_tbl_id'];
+                    $stock_tbl_data = $wpdb->get_row( "SELECT item_name, cat_name FROM {$wpdb->base_prefix}stock_tbl WHERE id = {$stock_tbl_id}", ARRAY_A );
+                    $item_name = isset( $stock_tbl_data['item_name'] ) ? $stock_tbl_data['item_name'] : 'We couldn\'t find the id: '. $item_id;
+                    $cat_name = isset( $stock_tbl_data['cat_name'] ) ? $stock_tbl_data['cat_name'] : 'We couldn\'t find the id: '. $item_id;
+                    $select_date_only = explode(' ', $item['created_at'])[0];
+                    ?>
+                    <tr>
+                        <td><?php echo $counter++?></td>
+                        <td><?php echo $item_name?></td>
+                        <td><?php echo $cat_name?></td>
+                        <td><?php echo $item['item_added']?></td>
+                        <td><?php echo $select_date_only?></td>
+                        <td style="display: none">
+                            <a href="#" class="lim-trigger-popup-box" data-title="" data-edit-id="<?php echo $item['id']?>">Edit</a>
+                            <a href="#" class="laim-delete-usage-item-conf" data-delete-id="<?php echo $item['id']?>">Delete</a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                echo '<tr><td colspan="5" style="text-align: center;font-size: 20px;color: #cd4242;">Sorry, No items found!</td></tr>';
             }
             ?>
         </tbody>

@@ -37,7 +37,7 @@ if ( ! function_exists( 'laim_view_stock_callback' ) ) {
 		global $wpdb;
 		?>
 		<div class="wrap laim-admin-wrapper">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<h1><?php echo esc_html( get_admin_page_title() ); ?> <span class="laim-add-inventory-item">Add Stock Item</span></h1>
 
 			<div class="laim-add-product-feature-requests-wrapper">
 				<div class="laim-section-content">
@@ -45,12 +45,16 @@ if ( ! function_exists( 'laim_view_stock_callback' ) ) {
 						<div class="tab-content">
 							<div id="tabs">
 								<ul>
-									<li><a href="#tabs-1"><?php _e('Chart', 'la-inventory-management')?></a></li>
-									<li><a href="#tabs-2"><?php _e('Stock', 'la-inventory-management')?></a></li>
+									<li><a href="#tabs-1"><?php _e('Stock Chart', 'la-inventory-management')?></a></li>
+									<li><a href="#tabs-2"><?php _e('Stock Table', 'la-inventory-management')?></a></li>
+									<li><a href="#tabs-3"><?php _e('Inventory Table', 'la-inventory-management')?></a></li>
+									<li><a href="#tabs-4"><?php _e('Usages Table', 'la-inventory-management')?></a></li>
 								</ul>
 								<?php
 									require_once plugin_dir_path( __FILE__ ) . './tab1-content.php';
 									require_once plugin_dir_path( __FILE__ ) . './tab2-content.php';
+									require_once plugin_dir_path( __FILE__ ) . './tab3-content.php';
+									require_once plugin_dir_path( __FILE__ ) . './tab4-content.php';
 								?>
 							</div>
 						</div>

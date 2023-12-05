@@ -6,7 +6,7 @@ if ( ! function_exists( 'laim_create_stock_db_table' ) ) {
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
 
-		// SQL Query
+		// Stock Table Schema
 		$sql = "CREATE TABLE `{$wpdb->base_prefix}stock_tbl` (
 		id mediumint(9) NOT NULL AUTO_INCREMENT,
 		item_name tinytext NOT NULL,
@@ -16,13 +16,22 @@ if ( ! function_exists( 'laim_create_stock_db_table' ) ) {
 		PRIMARY KEY (id)
 		) $charset_collate;";
 
-		// Another Table Query
+		// Usage Table Schema
 		$sql .= "CREATE TABLE `{$wpdb->base_prefix}usage_tbl` (
 		id mediumint(9) NOT NULL AUTO_INCREMENT,
 		item_name tinytext NOT NULL,
 		purpose tinytext NOT NULL,
 		item_used tinytext NOT NULL,
 		comments text NOT NULL,
+		created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+		PRIMARY KEY (id)
+		) $charset_collate;";
+
+		// Inventory Table Schema
+		$sql .= "CREATE TABLE `{$wpdb->base_prefix}inventory_tbl` (
+		id mediumint(9) NOT NULL AUTO_INCREMENT,
+		stock_tbl_id mediumint(9) NOT NULL,
+		item_added tinytext NOT NULL,
 		created_at datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 		PRIMARY KEY (id)
 		) $charset_collate;";
